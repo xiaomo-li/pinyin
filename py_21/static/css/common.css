@@ -1,0 +1,73 @@
+/* 约束当屏幕大于750px的时候，html字体大小就不变化了 */
+/* @media screen and (min-width:750px) {
+    html {
+        font-size: 24px !important;
+    }
+} */
+
+body {
+    /* min-width: 320px;
+    max-width: 750px; */
+    width: 100%;
+    margin: 0 auto;
+    background: #000000;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+em,
+i {
+    font-style: normal
+}
+
+
+li {
+    list-style: none
+}
+
+
+img {
+    border: 0;
+    vertical-align: middle
+}
+
+
+button {
+    cursor: pointer
+}
+
+
+a {
+    color: #666;
+    text-decoration: none
+}
+
+
+a:hover {
+    color: #c81623
+}
+
+
+
+button,
+input {
+    font-family: Microsoft YaHei, Heiti SC, tahoma, arial, Hiragino Sans GB, "\5B8B\4F53", sans-serif;
+    border: 0;
+    outline: none;
+}
+
+.none {
+    display: none
+}
+
+img {
+    -webkit-user-drag: none; /* Safari */
+    -webkit-user-select: none; /* Safari */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* IE10+/Edge */
+    user-select: none; /* Standard */
+}

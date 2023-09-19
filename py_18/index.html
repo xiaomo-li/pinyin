@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta
+      name="viewport"
+      content="width=device-width, user-scalable=no,initial-scale=1.0, maximum-scale=1.0, mininum-scale=1.0"
+    />
+    <link rel="stylesheet" href="./static/css/common.css" />
+    <link rel="stylesheet" href="./static/css/animate.min.css" />
+    <title>拼音首页</title>
+  </head>
+  <body>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+      #box {
+        position: relative;
+        width: calc(100vh * 16 / 9);
+        height: 100vh;
+        max-height: 100%;
+        /* background-color: #ccc; */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        font-size: 24px;
+        background-color: #fff;
+        background: url("./static/images/ke1Bg.png");
+        background-size: contain;
+        cursor: pointer;
+      }
+      img {
+        position: absolute;
+        cursor: pointer;
+      }
+      /* .btn:hover {
+        transform: scale(1.1);
+      } */
+      .hei {
+        position: fixed;
+        z-index: 999;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgb(0, 0, 0);
+      }
+      @keyframes rotate {
+        from {
+          transform: translate(-50%, -50%) rotate(0deg);
+        }
+        to {
+          transform: translate(-50%, -50%) rotate(360deg);
+        }
+      }
+    </style>
+    <!-- 黑幕 -->
+    <div class="hei"></div>
+    <div id="box">
+      <!-- 石头 -->
+      <img
+        class="blue"
+        style="width: 4.7%; top: 19%; left: 40.1%; display: none"
+        src="./static/images/blue.png"
+        alt=""
+      />
+      <img
+        class="blue2"
+        style="width: 4.7%; top: 19%; left: 40.1%"
+        src="./static/images/bt1.png"
+        alt=""
+      />
+      <!-- 人物 -->
+      <img
+        class="btn renwu"
+        style="width: 12%; top: 5.4%; left: 30%"
+        src="./static/images/ctt.png"
+        alt=""
+      />
+      <!-- 弹框 -->
+      <div
+        class="tankaung"
+        style="
+          position: fixed;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background-color: rgba(0, 0, 0, 0.3);
+          display: none;
+        "
+      >
+        <img
+          style="
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 55%;
+          "
+          src="./static/images/guangyun.png"
+          alt=""
+        />
+        <img
+          class="rotate-image"
+          style="
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            width: 40%;
+            animation: rotate 10s linear infinite;
+          "
+          src="./static/images/guangzhu.png"
+          alt=""
+        />
+        <img
+          style="
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 25%;
+            border-radius: 20px;
+            display: flex;
+            flex-flow: column;
+            align-items: center;
+            justify-content: space-around;
+            padding-top: 1%;
+          "
+          src="./static/images/shitu.png"
+          alt=""
+        />
+      </div>
+    </div>
+    <script>
+      function resizeBox() {
+        var box = document.getElementById("box");
+        var width = window.innerWidth; // 获取窗口宽度
+        var height = window.innerHeight; // 获取窗口高度
+        // 计算盒子的高度
+        var boxHeight = Math.min(height, (width / 16) * 9); // 高度最多为100%
+        // 设置盒子的样式
+        box.style.height = boxHeight + "px";
+      }
+      // 初始化时调整盒子大小
+      resizeBox();
+      // 监听窗口大小改变事件
+      window.addEventListener("resize", function () {
+        resizeBox();
+      });
+    </script>
+    <script>
+      function tk() {
+        setTimeout(() => {
+          $(".blue2").fadeOut();
+          $(".blue").fadeIn();
+        }, 1000);
+        $(".renwu").css({
+          width: "12%",
+          top: "5.4%",
+          left: "30%",
+
+          transform: "rotateY(0deg)",
+        });
+        $(".renwu").animate(
+          {
+            width: "12%",
+            top: "3.4%",
+            left: "36.1%",
+
+            transform: "180deg",
+          },
+          1000,
+          function () {
+            // 动画结束后的操作
+            $(".btn").attr("src", "./static/images/ctt.png");
+            $(".renwu").css({
+              width: "12%",
+              top: "3.4%",
+              left: "36.1%",
+              transform: "rotateY(0deg)",
+            });
+          }
+        );
+        setTimeout(() => {
+          document.querySelector(".tankaung").style.display = "block";
+          document.querySelector(".tankaung").className =
+            "tankaung animate__animated animate__fadeIn";
+          new Audio("./static/mp3/start.mp3").play();
+          new Audio("./static/mp3/P1-1.mp3").play(); // 海上奥运会
+          setTimeout(() => {
+            next();
+          }, 3000);
+        }, 1000);
+      }
+      function next() {
+        $(".hei").fadeIn(); // 2000毫秒为过渡效果持续时间
+        setTimeout(() => {
+          window.location.href = "./static/page/page1.html";
+        }, 1000);
+      }
+    </script>
+
+    <script src="./static/js/jquery-1.12.3.js"></script>
+    <script>
+      // 在页面加载完成后执行
+      $(document).ready(function () {
+        // 设置一个延时，以便看到渐变过渡效果
+        setTimeout(function () {
+          $(".hei").fadeOut(500, function () {
+            // 渐变过渡结束后隐藏盒子
+            $(this).hide();
+          });
+        }, 0);
+      });
+    </script>
+    <script>
+      $("#box").one("click", function () {
+        console.log(new Audio("./static/mp3/P1-1.mp3").play);
+        new Audio("./static/mp3/chufa.mp3").play(); //出发
+
+        setTimeout(() => {
+          $(".btn").attr("src", "./static/images/ctt_gif.gif");
+          tk();
+        }, 800);
+      });
+    </script>
+  </body>
+</html>

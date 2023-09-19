@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta
+      name="viewport"
+      content="width=device-width, user-scalable=no,initial-scale=1.0, maximum-scale=1.0, mininum-scale=1.0"
+    />
+    <link rel="stylesheet" href="../css/common.css" />
+    <link rel="stylesheet" href="../css/animate.min.css" />
+    <title>page5</title>
+  </head>
+  <body>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+      #box {
+        position: relative;
+        width: calc(100vh * 16 / 9);
+        height: 100vh;
+        max-height: 100%;
+        /* background-color: #ccc; */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        font-size: 24px;
+        background: url("../images/scene1.png") no-repeat;
+        background-size: 100% 100%;
+        overflow: hidden;
+      }
+      img {
+        position: absolute;
+        cursor: pointer;
+      }
+      .btn {
+        transition: transform 0.1s;
+      }
+      .btn:hover {
+        transform: scale(1.1);
+      }
+      .hei {
+        position: fixed;
+        z-index: 999;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgb(0, 0, 0);
+        display: none;
+      }
+      .dw,
+      .yun {
+        display: none;
+      }
+      .shake {
+        animation: shakes 1s ease-in-out;
+      }
+      @keyframes shakes {
+        0%,
+        60% {
+          transform: rotate(5deg);
+        }
+        30%,
+        90% {
+          transform: rotate(-5deg);
+        }
+      }
+      @keyframes rotate {
+        from {
+          transform: translate(-50%, -50%) rotate(0deg);
+        }
+        to {
+          transform: translate(-50%, -50%) rotate(360deg);
+        }
+      }
+      @keyframes blink {
+        0% {
+          opacity: 1;
+        }
+
+        50% {
+          opacity: 0;
+        }
+
+        100% {
+          opacity: 1;
+        }
+      }
+
+      .xh {
+        animation: blink 1s infinite;
+      }
+    </style>
+    <!-- 黑幕 -->
+    <div class="hei"></div>
+    <div id="box" class="hb">
+      <!-- 左侧箭头 -->
+      <!-- <img
+        onclick="lasts()"
+        class="lefts"
+        style="
+          width: 3%;
+          top: 50%;
+          left: 2%;
+          transform: translateY(-50%) scale(1.1);
+          display: none;
+        "
+        src="../images/toLeft.png"
+        alt=""
+      /> -->
+      <!-- 右侧箭头 -->
+      <!-- <img
+        onclick="nexts()"
+        class="rights"
+        style="
+          width: 3%;
+          top: 50%;
+          right: 2%;
+          transform: translateY(-50%) scale(1.1);
+        "
+        src="../images/toRight.png"
+        alt=""
+      /> -->
+
+      <!-- <canvas
+        id="canvas"
+        style="width: 100%;height: 100%;"
+      ></canvas> -->
+
+      <!-- 返回 -->
+      <img
+        onclick="ret()"
+        class="btn"
+        style="width: 4.5%; top: 3%; left: 3%"
+        src="../images/fanhui@2x.png"
+        alt=""
+      />
+      <!-- 提醒 -->
+      <!-- <img
+        class="btn"
+        style="width: 4.5%; top: 3%; right: 3%"
+        src="../images/tishi@2x.png"
+        alt=""
+      /> -->
+      <!-- 重玩 -->
+      <img
+        id="clear_btn"
+        onclick="cw()"
+        class="btn chongwan"
+        style="width: 9.5%; bottom: 3%; right: 38.5%; z-index: 2"
+        src="../images/cwBtn.png "
+        alt=""
+      />
+
+      <!-- 小白点 -->
+      <img
+        class="xh"
+        onclick="to(1)"
+        style="width: 1.2%; top: 59.7%; left: 58.1%; z-index: 1"
+        src="../images/gaoliang.png"
+        alt=""
+      />
+      <div class="gif"></div>
+
+      <!-- <img
+        style="width: 14%; top: 66%; left: 8%"
+        src="../images/gift.png"
+        class="zm a"
+        alt=""
+      />
+      <img
+        style="width: 10%; top: 60%; left: 30.6%"
+        src="../images/gift.png"
+        class="zm b"
+        alt=""
+      />-->
+      <img
+        style="width: 10%; top: 60%; left: 52.7%"
+        src="../images/gift.png"
+        class="zm c"
+        alt=""
+      /><img
+        style="width: 10%; top: 60%; left: 75.4%"
+        src="../images/gift.png"
+        class="zm d"
+        alt=""
+      />
+      <!-- 字母 -->
+
+      <img
+        style="width: 15%; top: 45.3%; left: 0%; display: block"
+        src="../images/yun1.png"
+        class="yun a"
+        alt=""
+      /><img
+        style="width: 15%; top: 26.4%; left: 13%; display: block"
+        src="../images/yun2.png"
+        class="yun b"
+        alt=""
+      /><img
+        style="width: 15%; top: 28.2%; left: 61.4%"
+        src="../images/yun3.png"
+        class="yun c"
+        alt=""
+      /><img
+        style="width: 15%; top: 36.7%; left: 79%"
+        src="../images/yun4.png"
+        class="yun d"
+        alt=""
+      />
+      <!-- 动物 -->
+
+      <img
+        style="width: 20%; top: 46%; left: 8%; display: block"
+        src="../images/page1.png"
+        class="dw a"
+        alt=""
+      /><img
+        style="width: 10%; top: 48%; left: 28.6%; display: block"
+        src="../images/page2.png"
+        class="dw b"
+        alt=""
+      /><img
+        style="width: 15%; top: 52%; left: 49.7%"
+        src="../images/page3.png"
+        class="dw c"
+        alt=""
+      /><img
+        style="width: 17%; top: 59%; left: 71.7%"
+        src="../images/page4.png"
+        class="dw d"
+        alt=""
+      />
+      <!-- 语音 -->
+      <img
+        class="btn yuyin"
+        onclick="playMp3()"
+        style="width: 9.5%; bottom: 3%; right: 28%"
+        src="../images/yuyin@2x.png"
+        alt=""
+      />
+      <!-- 上一页 -->
+      <img
+        class="btn shangyiye"
+        onclick="pre()"
+        style="width: 12%; bottom: 3%; right: 15%"
+        src="../images/syy.png"
+        alt=""
+      />
+      <!-- 下一页 -->
+      <img
+        class="btn xiayiye"
+        onclick="next()"
+        style="width: 12%; bottom: 3%; right: 2%"
+        src="../images/nextPage.png"
+        alt=""
+      />
+    </div>
+
+    <script>
+      function resizeBox() {
+        var box = document.getElementById("box");
+        var width = window.innerWidth; // 获取窗口宽度
+        var height = window.innerHeight; // 获取窗口高度
+        // 计算盒子的高度
+        var boxHeight = Math.min(height, (width / 16) * 9); // 高度最多为100%
+        // 设置盒子的样式
+        box.style.height = boxHeight + "px";
+      }
+      // 初始化时调整盒子大小
+      resizeBox();
+      // 监听窗口大小改变事件
+      window.addEventListener("resize", function () {
+        resizeBox();
+      });
+    </script>
+    <script>
+      function next() {
+        new Audio("../mp3/pages.mp3").play();
+        $(".hei").fadeIn(500); // 2000毫秒为过渡效果持续时间
+        setTimeout(() => {
+          window.location.href = "./page6.html";
+        }, 500);
+      }
+      function pre() {
+        new Audio("../mp3/pages.mp3").play();
+        $(".hei").fadeIn(500); // 2000毫秒为过渡效果持续时间
+        setTimeout(() => {
+          window.location.href = "./page4.html";
+        }, 500);
+      }
+    </script>
+    <script src="../js/jquery-1.12.3.js"></script>
+
+    <script>
+      var audio = new Audio("../mp3/P2-1.mp3");
+      var isPlaying = false;
+      function playMp3() {
+        if (!isPlaying) {
+          isPlaying = true;
+          audio.play();
+          audio.onended = function () {
+            isPlaying = false;
+          };
+        }
+      }
+      function to(i) {
+        $(".xh").hide();
+
+        $(".zm.c").addClass("shake");
+        setTimeout(() => {
+          $(".zm.c").fadeOut();
+          $(".yun.c").fadeIn();
+          $(".dw.c").fadeIn();
+
+          new Audio("../mp3/bling.mp3").play();
+
+          setTimeout(() => {
+            next();
+          }, 3000);
+        }, 1000);
+      }
+      $(".zm.c").click(function () {
+        $(".xh").hide();
+
+        $(".zm.c").addClass("shake");
+        setTimeout(() => {
+          $(".zm.c").fadeOut();
+          $(".yun.c").fadeIn();
+          $(".dw.c").fadeIn();
+
+          new Audio("../mp3/bling.mp3").play();
+
+          setTimeout(() => {
+            next();
+          }, 3000);
+        }, 1000);
+      });
+      // 关闭提示弹框
+      $(".prop").click(function () {
+        $(".prop").fadeOut();
+      });
+    </script>
+    <script>
+      // 语音按钮
+      const imgElement = document.querySelector(".btn.yuyin");
+      imgElement.addEventListener("mousedown", function (event) {
+        //console.log("鼠标按下");
+        // 更改图片元素的src属性
+        imgElement.src = "../images/axyy.png";
+      });
+      imgElement.addEventListener("mouseup", function (event) {
+        //console.log("鼠标抬起");
+        imgElement.src = "../images/yuyin@2x.png";
+      });
+      imgElement.addEventListener("mouseleave", function (event) {
+        ////console.log("鼠标离开");
+        imgElement.src = "../images/yuyin@2x.png";
+      });
+
+      // 上一页按钮
+      const imgElement2 = document.querySelector(".btn.shangyiye");
+      imgElement2.addEventListener("mousedown", function (event) {
+        //console.log("鼠标按下");
+        // 更改图片元素的src属性
+        imgElement2.src = "../images/As.png";
+      });
+      imgElement2.addEventListener("mouseup", function (event) {
+        //console.log("鼠标抬起");
+        imgElement2.src = "../images/syy.png";
+      });
+      imgElement2.addEventListener("mouseleave", function (event) {
+        ////console.log("鼠标离开");
+        imgElement2.src = "../images/syy.png";
+      });
+
+      // 下一页按钮
+      const imgElement3 = document.querySelector(".btn.xiayiye");
+      imgElement3.addEventListener("mousedown", function (event) {
+        //console.log("鼠标按下");
+        // 更改图片元素的src属性
+        imgElement3.src = "../images/Ax.png";
+      });
+      imgElement3.addEventListener("mouseup", function (event) {
+        //console.log("鼠标抬起");
+        imgElement3.src = "../images/nextPage.png";
+      });
+      imgElement3.addEventListener("mouseleave", function (event) {
+        ////console.log("鼠标离开");
+        imgElement3.src = "../images/nextPage.png";
+      });
+
+      // 重玩按钮
+      const imgElement4 = document.querySelector(".btn.chongwan");
+      imgElement4.addEventListener("mousedown", function (event) {
+        // 更改图片元素的src属性
+        imgElement4.src = "../images/axcw.png";
+      });
+      imgElement4.addEventListener("mouseup", function (event) {
+        imgElement4.src = "../images/cwBtn.png ";
+      });
+      imgElement4.addEventListener("mouseleave", function (event) {
+        imgElement4.src = "../images/cwBtn.png ";
+      });
+    </script>
+    <script>
+      // 在页面加载完成后执行
+      $(document).ready(function () {
+        // 设置一个延时，以便看到渐变过渡效果
+        setTimeout(function () {
+          $(".hei").fadeOut(500, function () {
+            // 渐变过渡结束后隐藏盒子
+            $(this).hide();
+          });
+        }, 0);
+      });
+    </script>
+    <script>
+      function ret() {
+        $(".hei").fadeIn(500); // 2000毫秒为过渡效果持续时间
+        setTimeout(() => {
+          window.location.href = "../../../../../page2.html";
+        }, 500);
+      }
+      function cw() {
+        location.reload();
+      }
+    </script>
+    <script>
+      // function lasts() {
+      //   $(".tankaung").fadeOut();
+      //   // $(".rights").fadeIn()
+      // }
+      // function nexts() {
+      //   new Audio("../mp3/start.mp3").play();
+      //   $(".tankaung").fadeIn();
+      //   $(".success").fadeOut();
+      // }
+    </script>
+  </body>
+</html>

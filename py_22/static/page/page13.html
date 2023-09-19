@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta
+      name="viewport"
+      content="width=device-width, user-scalable=no,initial-scale=1.0, maximum-scale=1.0, mininum-scale=1.0"
+    />
+    <link rel="stylesheet" href="../css/common.css" />
+    <link rel="stylesheet" href="../css/animate.min.css" />
+    <title>page13</title>
+  </head>
+
+  <body>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+
+      #box {
+        position: relative;
+        width: calc(100vh * 16 / 9);
+        height: 100vh;
+        max-height: 100%;
+        /* background-color: #ccc; */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        font-size: 24px;
+        background: url("../images/lx-bg.png");
+        background-size: contain;
+      }
+
+      .btn {
+        transition: transform 0.1s;
+      }
+
+      .btn:hover {
+        transform: scale(1.1);
+      }
+
+      img {
+        position: absolute;
+        cursor: pointer;
+        box-sizing: border-box;
+      }
+
+      .hei {
+        position: fixed;
+        z-index: 999;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgb(0, 0, 0);
+      }
+
+      .line {
+        border: 2px solid transparent;
+      }
+
+      .halo {
+        border: 2px solid red;
+        /* border-radius: 50%; */
+      }
+    </style>
+    <!-- 黑幕 -->
+    <div class="hei"></div>
+    <div id="box">
+      <!-- 返回 -->
+      <img
+        class="btn"
+        onclick="ret()"
+        style="width: 4.5%; top: 3%; left: 3%"
+        src="../images/fanhui@2x.png"
+        alt=""
+      />
+      <!-- 重玩 -->
+      <img
+        class="btn chongwan"
+        onclick="shua()"
+        style="width: 9.5%; bottom: 3%; right: 38.5%"
+        src="../images/cwBtn.png "
+        alt=""
+      />
+      <!-- 语音 -->
+      <img
+        class="btn yuyin"
+        onclick="playMp3()"
+        style="width: 9.5%; bottom: 3%; right: 28%"
+        src="../images/yuyin@2x.png"
+        alt=""
+      />
+      <!-- 上一页 -->
+      <img
+        class="btn shangyiye"
+        onclick="pre()"
+        style="width: 12%; bottom: 3%; right: 15%"
+        src="../images/syy.png"
+        alt=""
+      />
+      <!-- 下一页 -->
+      <img
+        class="btn xiayiye"
+        onclick="next()"
+        style="width: 12%; bottom: 3%; right: 2%"
+        src="../images/nextPage.png"
+        alt=""
+      />
+      <!--中间连线 ------------------------------------------------------------->
+      <div
+        style="
+          position: absolute;
+          width: 65%;
+          height: 58%;
+          left: 50%;
+          transform: translateX(-50%);
+          top: 18%;
+          z-index: 99;
+          display: flex;
+          flex-flow: column;
+          /* background-color:green; */
+          justify-content: space-between;
+        "
+      >
+        <div
+          style="
+            width: 100%;
+            height: 40%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            /* background-color:red;0 */
+          "
+        >
+          <img
+            onclick="xuanze(1)"
+            class="line line1"
+            style="width: 25%; position: relative"
+            src="../images/lx1.png"
+            alt=""
+          />
+          <img
+            onclick="xuanze(2)"
+            class="line line2"
+            style="width: 25%; position: relative"
+            src="../images/lx2.png"
+            alt=""
+          />
+          <img
+            onclick="xuanze(3)"
+            class="line line3"
+            style="width: 25%; position: relative"
+            src="../images/lx3.png"
+            alt=""
+          />
+          <!-- <img
+            onclick="xuanze(4)"
+            class="line line4"
+            style="width: 20%; position: relative"
+            src="../images/lian4.png"
+            alt=""
+          /> -->
+          <!-- <img
+            onclick="xuanze(5)"
+            class="line line5"
+            style="width: 12%; position: relative"
+            src="../images/lian5.png"
+            alt=""
+          />
+          <img
+            onclick="xuanze(6)"
+            class="line line6"
+            style="width: 12%; position: relative"
+            src="../images/lian6.png"
+            alt=""
+          /> -->
+        </div>
+        <div
+          style="
+            width: 100%;
+            height: 45%;
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+          "
+        >
+          <img
+            onclick="xuanze(11)"
+            class="line line11"
+            style="width: 25%; position: relative"
+            src="../images/lx-word1.png"
+            alt=""
+          />
+          <img
+            onclick="xuanze(22)"
+            class="line line22"
+            style="width: 25%; position: relative"
+            src="../images/lx-word2.png"
+            alt=""
+          />
+          <img
+            onclick="xuanze(33)"
+            class="line line33"
+            style="width: 25%; position: relative"
+            src="../images/lx-word3.png"
+            alt=""
+          />
+          <!-- <img
+            onclick="xuanze(44)"
+            class="line line44"
+            style="width: 20%; position: relative"
+            src="../images/1-4@2x.png"
+            alt=""
+          /> -->
+          <!--<img
+            onclick="xuanze(55)"
+            class="line line55"
+            style="width: 15%; position: relative"
+            src="../images/1-5@2x.png"
+            alt=""
+          /> -->
+        </div>
+      </div>
+      <img
+        class="Lline1"
+        style="
+          top: 53.8%;
+          left: 24%;
+          z-index: 99;
+          width: 26.5%;
+          transform: rotate(26deg);
+          display: none;
+        "
+        src="../images/line1.png"
+        alt=""
+      />
+      <img
+        class="Lline2"
+        style="
+          top: 53.8%;
+          left: 50%;
+          z-index: 99;
+          width: 26.5%;
+
+          transform: rotate(26deg);
+          display: none;
+        "
+        src="../images/line1.png"
+        alt=""
+      />
+      <img
+        class="Lline3"
+        style="
+          top: 53.8%;
+          left: 25%;
+          z-index: 99;
+          width: 51.5%;
+          transform: rotate(347deg);
+          height: 0.2%;
+          display: none;
+        "
+        src="../images/line1.png"
+        alt=""
+      />
+      <!-- <img
+        class="Lline4"
+        style="
+          top: 48%;
+          left: 41%;
+          z-index: 99;
+          width: 35%;
+          transform: rotate(-15deg);
+          display: none;
+        "
+        src="../images/line2.png"
+        alt=""
+      /> -->
+      <!-- <img
+        class="Lline5"
+        style="top: 42.7%;
+        right: 32%;
+        z-index: 99;
+        width: 34%;
+        transform: rotate(-16deg);display: none;
+        "
+        src="../images/line2.png"
+        alt=""
+      />
+      <img
+        class="Lline6"
+        style="top: 42.5%;
+        right: 22%;
+        z-index: 99;
+        width: 44%;
+        transform: rotate(-13deg); display: none;
+      "
+        src="../images/line2.png"
+        alt=""
+      /> -->
+      <img
+        class="success"
+        style="
+          width: 30%;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -55%);
+          z-index: 99;
+          display: none;
+        "
+        src="../images/success.gif"
+        alt=""
+      />
+    </div>
+    <script src="../js/jquery-1.12.3.js"></script>
+    <script>
+      function resizeBox() {
+        var box = document.getElementById("box");
+        var width = window.innerWidth; // 获取窗口宽度
+        var height = window.innerHeight; // 获取窗口高度
+        // 计算盒子的高度
+        var boxHeight = Math.min(height, (width / 16) * 9); // 高度最多为100%
+        // 设置盒子的样式
+        box.style.height = boxHeight + "px";
+      }
+      // 初始化时调整盒子大小
+      resizeBox();
+      // 监听窗口大小改变事件
+      window.addEventListener("resize", function () {
+        resizeBox();
+      });
+    </script>
+    <script>
+      function pre() {
+        new Audio("../mp3/pages.mp3").play();
+        $(".hei").fadeIn(500); // 2000毫秒为过渡效果持续时间
+        setTimeout(() => {
+          window.location.href = "./page12.html";
+        }, 500);
+      }
+      function next() {
+        new Audio("../mp3/pages.mp3").play();
+        $(".hei").fadeIn(500); // 2000毫秒为过渡效果持续时间
+        setTimeout(() => {
+          window.location.href = "./page15.html";
+        }, 500);
+      }
+    </script>
+
+    <script>
+      let isPlaying = false;
+      function playMp3() {
+        if (!isPlaying) {
+          isPlaying = true;
+          const audio = new Audio("../mp3/P10.mp3");
+          audio.onended = function () {
+            isPlaying = false;
+          };
+          audio.play();
+        }
+      }
+      function shua() {
+        $(".Lline1").fadeOut();
+        $(".Lline2").fadeOut();
+        $(".Lline3").fadeOut();
+        $(".Lline4").fadeOut();
+        $(".Lline5").fadeOut();
+        $(".Lline6").fadeOut();
+        $(".success").fadeOut();
+        shu = [0, 0];
+      }
+    </script>
+    <script>
+      // 语音按钮
+      const imgElement = document.querySelector(".btn.yuyin");
+      imgElement.addEventListener("mousedown", function (event) {
+        // 更改图片元素的src属性
+        imgElement.src = "../images/axyy.png";
+      });
+      imgElement.addEventListener("mouseup", function (event) {
+        imgElement.src = "../images/yuyin@2x.png";
+      });
+      imgElement.addEventListener("mouseleave", function (event) {
+        imgElement.src = "../images/yuyin@2x.png";
+      });
+
+      // 上一页按钮
+      const imgElement2 = document.querySelector(".btn.shangyiye");
+      imgElement2.addEventListener("mousedown", function (event) {
+        // 更改图片元素的src属性
+        imgElement2.src = "../images/As.png";
+      });
+      imgElement2.addEventListener("mouseup", function (event) {
+        imgElement2.src = "../images/syy.png";
+      });
+      imgElement2.addEventListener("mouseleave", function (event) {
+        imgElement2.src = "../images/syy.png";
+      });
+
+      // 下一页按钮
+      const imgElement3 = document.querySelector(".btn.xiayiye");
+      imgElement3.addEventListener("mousedown", function (event) {
+        // 更改图片元素的src属性
+        imgElement3.src = "../images/Ax.png";
+      });
+      imgElement3.addEventListener("mouseup", function (event) {
+        imgElement3.src = "../images/nextPage.png";
+      });
+      imgElement3.addEventListener("mouseleave", function (event) {
+        imgElement3.src = "../images/nextPage.png";
+      });
+
+      // 重玩按钮
+      const imgElement4 = document.querySelector(".btn.chongwan");
+      imgElement4.addEventListener("mousedown", function (event) {
+        // 更改图片元素的src属性
+        imgElement4.src = "../images/axcw.png";
+      });
+      imgElement4.addEventListener("mouseup", function (event) {
+        imgElement4.src = "../images/cwBtn.png ";
+      });
+      imgElement4.addEventListener("mouseleave", function (event) {
+        imgElement4.src = "../images/cwBtn.png ";
+      });
+    </script>
+    <script>
+      // 在页面加载完成后执行
+      $(document).ready(function () {
+        // 设置一个延时，以便看到渐变过渡效果
+        setTimeout(function () {
+          $(".hei").fadeOut(500, function () {
+            // 渐变过渡结束后隐藏盒子
+            $(this).hide();
+          });
+        }, 0);
+      });
+    </script>
+    <script>
+      var shu = [0, 0];
+      function xuanze(number) {
+        if (number == 1 || number == 2 || number == 3 || number == 4) {
+          shu[0] = number;
+        } else if (
+          number == 11 ||
+          number == 22 ||
+          number == 33 ||
+          number == 44
+        ) {
+          shu[1] = number;
+        }
+        if (shu[0] != 0 && shu[1] != 0) {
+          if (shu[0] === 1 && shu[1] === 22) {
+            $(".Lline1").fadeIn();
+            new Audio("../mp3/connect.mp3").play();
+          } else if (shu[0] === 2 && shu[1] === 33) {
+            new Audio("../mp3/connect.mp3").play();
+            $(".Lline2").fadeIn();
+          } else if (shu[0] === 3 && shu[1] === 11) {
+            new Audio("../mp3/connect.mp3").play();
+            $(".Lline3").fadeIn();
+          }
+          //  else if (shu[0] === 4 && shu[1] === 22) {
+          //   new Audio("../mp3/connect.mp3").play();
+          //   $(".Lline4").fadeIn();
+          // }
+          // else if (shu[0] === 5 && shu[1] === 11) {
+          //   new Audio("../mp3/connect.mp3").play();
+          //   $(".Lline5").fadeIn();
+          // } else if (shu[0] === 6 && shu[1] === 11) {
+          //   new Audio("../mp3/connect.mp3").play();
+          //   $(".Lline6").fadeIn();
+          // }
+          else {
+            new Audio("../mp3/sb.mp3").play();
+          }
+          shu = [0, 0];
+        }
+        var allBlocks = true;
+        var elements = document.querySelectorAll(".Lline1, .Lline2, .Lline3");
+        for (var i = 0; i < elements.length; i++) {
+          if (getComputedStyle(elements[i]).display !== "block") {
+            allBlocks = false;
+            break;
+          }
+        }
+        if (allBlocks) {
+          $(".success").fadeIn();
+          new Audio("../mp3/victory.mp3").play();
+        } else {
+          $(".success").fadeOut();
+        }
+
+        let shus = shu;
+        // console.log(6666666666, shus);
+        // 添加光圈效果的函数
+        function addHaloEffect(selector) {
+          const element = document.querySelector(selector);
+          if (element) {
+            element.classList.add("halo");
+          }
+        }
+
+        // 移除光圈效果的函数
+        function removeHaloEffect(selector) {
+          const element = document.querySelector(selector);
+          if (element) {
+            element.classList.remove("halo");
+          }
+        }
+
+        // 移除所有背景效果
+        for (let i = 1; i <= 4; i++) {
+          const lineClass = `.line${i}`;
+          removeHaloEffect(lineClass);
+        }
+
+        // 判断并设置光圈效果
+        if ([1, 2, 3, 4].includes(shus[0])) {
+          const lineClass = `.line${shus[0]}`;
+          addHaloEffect(lineClass);
+        }
+
+        // 判断并设置第二个光圈效果
+        if ([11, 22, 33, 44].includes(shus[1])) {
+          const lineClass = `.line${shus[1]}`;
+          addHaloEffect(lineClass);
+        } else {
+          for (let i = 11; i <= 66; i += 11) {
+            const lineClass = `.line${i}`;
+            removeHaloEffect(lineClass);
+          }
+        }
+      }
+    </script>
+    <script>
+      function ret() {
+        $(".hei").fadeIn(500); // 2000毫秒为过渡效果持续时间
+        setTimeout(() => {
+          window.location.href = "../../../../../page2.html";
+        }, 500);
+      }
+    </script>
+  </body>
+</html>

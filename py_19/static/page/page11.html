@@ -1,0 +1,978 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta
+      name="viewport"
+      content="width=device-width, user-scalable=no,initial-scale=1.0, maximum-scale=1.0, mininum-scale=1.0"
+    />
+    <link rel="stylesheet" href="../css/common.css" />
+    <link rel="stylesheet" href="../css/animate.min.css" />
+    <title>page11</title>
+  </head>
+  <body>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+      #box {
+        position: relative;
+        width: calc(100vh * 16 / 9);
+        height: 100vh;
+        max-height: 100%;
+        /* background-color: #ccc; */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        font-size: 24px;
+        background: url("../images/page4Bg.png");
+        background-size: contain;
+      }
+      .btn {
+        transition: transform 0.1s;
+      }
+      .btn:hover {
+        transform: scale(1.1);
+      }
+      img {
+        position: absolute;
+        cursor: pointer;
+      }
+      .hei {
+        position: fixed;
+        z-index: 999;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgb(0, 0, 0);
+      }
+      .prop {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(0, 0, 0, 0.5);
+        z-index: 999;
+        display: none;
+      }
+    </style>
+    <!-- 黑幕 -->
+    <div class="hei"></div>
+    <div id="box">
+      <div class="prop">
+        <img
+          class="tk1"
+          style="
+            width: 50%;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+          "
+          src="../images/bh-tip1.png"
+          alt=""
+        />
+        <img
+          class="tk2"
+          style="
+            width: 50%;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            display: none;
+          "
+          src="../images/bh-tip2.png"
+          alt=""
+        />
+        <img
+          class="tk3"
+          style="
+            width: 50%;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            display: none;
+          "
+          src="../images/bh-tip3.png"
+          alt=""
+        />
+        <!-- <img
+          class="tk4"
+          style="
+            width: 50%;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            display: none;
+          "
+          src="../images/tk4.png"
+          alt=""
+        /> -->
+      </div>
+      <!-- 提醒 -->
+      <img
+        onclick="tixing()"
+        class="btn"
+        style="width: 4.5%; top: 3%; right: 3%"
+        src="../images/tishi@2x.png"
+        alt=""
+      />
+      <!-- 手绘板 -->
+      <canvas
+        style="
+          position: absolute;
+          z-index: 99;
+          width: 26%;
+          top: 37%;
+          right: 14%;
+        "
+        id="canvas"
+      ></canvas>
+      <!-- 返回 -->
+      <img
+        onclick="ret()"
+        class="btn"
+        style="width: 4.5%; top: 3%; left: 3%"
+        src="../images/fanhui@2x.png"
+        alt=""
+      />
+      <!-- 重玩 -->
+      <img
+        id="clear_btn"
+        onclick="cw()"
+        class="btn chongwan"
+        style="width: 9.5%; bottom: 3%; right: 38.5%"
+        src="../images/cwBtn.png"
+        alt=""
+      />
+      <!-- 语音 -->
+      <img
+        class="btn yuyin"
+        onclick="playMp3()"
+        style="width: 9.5%; bottom: 3%; right: 28%"
+        src="../images/yuyin@2x.png"
+        alt=""
+      />
+      <!-- 上一页 -->
+      <img
+        class="btn shangyiye"
+        onclick="pre()"
+        style="width: 12%; bottom: 3%; right: 15%"
+        src="../images/syy.png"
+        alt=""
+      />
+      <!-- 下一页 -->
+      <img
+        class="btn xiayiye"
+        onclick="next()"
+        style="width: 12%; bottom: 3%; right: 2%"
+        src="../images/nextPage.png"
+        alt=""
+      />
+      <!-- 左侧箭头 -->
+      <img
+        id="cw"
+        class="lefts"
+        onclick="goTop()"
+        style="
+          width: 3%;
+          top: 50%;
+          left: 3%;
+          transform: translateY(-50%);
+          display: none;
+        "
+        src="../images/toLeft.png"
+        alt=""
+      />
+      <!-- 右侧箭头 -->
+      <img
+        id="cw2"
+        class="rights"
+        onclick="goBtm()"
+        style="width: 3%; top: 50%; right: 3%; transform: translateY(-50%)"
+        src="../images/toRight.png"
+        alt=""
+      />
+
+      <!-- ao字母 -->
+      <img
+        class="zhi"
+        style="width: 17.2%; top: 56.8%; left: 19.9%; display: none"
+        src="../images/an.png"
+        alt=""
+      />
+
+      <img
+        class="zhi1"
+        style="width: 6.1%; top: 57.4%; left: 20.4%; display: none"
+        src="../images/bihua1-1.png"
+        alt=""
+      />
+      <img
+        class="zhi2"
+        style="width: 2%; top: 58.3%; left: 26.5%; display: none"
+        src="../images/bihua1-2.png"
+        alt=""
+      />
+      <img
+        class="zhi3"
+        style="width: 0.9%; top: 58.1%; left: 30.4%; display: none"
+        src="../images/bihua1-3.png"
+        alt=""
+      />
+      <img
+        class="zhi4"
+        style="width: 5.4%; top: 57.5%; left: 31.55%; display: none"
+        src="../images/bihua1-4.png"
+        alt=""
+      />
+      <!-- <img
+        class="zhi5"
+        style="width: 0.8%;
+        top: 51.5%;
+        left: 37.4%;display: none"
+        src="../images/quan5.png"
+        alt=""
+      /> -->
+      <!-- ou字母 -->
+      <img
+        class="chi"
+        style="width: 16.4%; top: 56.8%; left: 20.2%; display: none"
+        src="../images/en.png"
+        alt=""
+      />
+      <img
+        class="chi1"
+        style="width: 6.7%; top: 57.7%; left: 20.6%; display: none"
+        src="../images/bihua2-1.png"
+        alt=""
+      />
+      <img
+        class="chi2"
+        style="width: 1%; top: 57.3%; left: 29.72%; display: none"
+        src="../images/bihua2-2.png"
+        alt=""
+      />
+      <img
+        class="chi3"
+        style="width: 5.6%; top: 57.5%; left: 30.82%; display: none"
+        src="../images/bihua2-3.png"
+        alt=""
+      />
+      <!-- <img
+        class="chi4"
+        style="width: 0.9%; top: 51.7%; left: 26.12%; display: none"
+        src="../images/bihua2-4.png"
+        alt=""
+      /><img
+        class="chi5"
+        style="width: 6.85%; top: 57.3%; left: 29.72%; display: none"
+        src="../images/bihua2-5.png"
+        alt=""
+      /> -->
+      <!-- ui字母 -->
+      <img
+        class="shi"
+        style="width: 11.1%; top: 50.8%; left: 22.8%; display: none"
+        src="../images/in.png"
+        alt=""
+      />
+
+      <img
+        class="shi1"
+        style="width: 1%; top: 57.2%; left: 23.2%; display: none"
+        src="../images/bihua3-1.png"
+        alt=""
+      />
+      <img
+        class="shi2"
+        style="width: 1%; top: 51.2%; left: 23.2%; display: none"
+        src="../images/bihua3-2.png"
+        alt=""
+      />
+      <img
+        class="shi3"
+        style="width: 1%; top: 57.2%; left: 26.9%; display: none"
+        src="../images/bihua3-3.png"
+        alt=""
+      />
+      <img
+        class="shi4"
+        style="width: 5.8%; top: 57.2%; left: 27.9%; display: none"
+        src="../images/bihua3-4.png"
+        alt=""
+      />
+      <!-- ri字母 -->
+      <!-- <img
+        class="ri"
+        style="width: 7.9%; top: 50.7%; left: 24%; display: none"
+        src="../images/ri.png"
+        alt=""
+      />
+      <img
+        class="ri1"
+        style="width: 1.1%; top: 56.7%; left: 24.25%; display: none"
+        src="../images/ri1.png"
+        alt=""
+      />
+      <img
+        class="ri2"
+        style="
+          width: 3%;
+          top: 56.8%;
+          left: 25.5%;
+          transform: rotate(-7deg);
+          display: none;
+        "
+        src="../images/ri2.png"
+        alt=""
+      />
+      <img
+        class="ri3"
+        style="width: 1.05%; top: 56.7%; left: 30.5%; display: none"
+        src="../images/ri3.png"
+        alt=""
+      />
+      <img
+        class="ri4"
+        style="width: 0.9%; top: 51.2%; left: 30.55%; display: none"
+        src="../images/ri4.png"
+        alt=""
+      /> -->
+
+      <!-- 写一写 -->
+      <img
+        style="width: 10%; top: 26%; right: 22%"
+        src="../images/xieyixie.png"
+        alt=""
+      />
+      <!-- 格子 -->
+      <img
+        class="gezi"
+        style="width: 26%; top: 37%; right: 14%"
+        src="../images/gezi.png"
+        alt=""
+      />
+      <!-- 撤销 -->
+      <img
+        id="cx_btn"
+        class="btn"
+        style="width: 10%; bottom: 21%; right: 21.5%"
+        src="../images/cx.png"
+        alt=""
+      />
+      <!-- 写一写按钮 -->
+      <!-- <img
+        onclick="xie()"
+        class="c44 btn xieyixie"
+        style="width: 11%; top: 68%; right: 24.8%; display: none"
+        src="../images/xyx.png"
+        alt=""
+      /> -->
+    </div>
+    <script src="../js/jquery-1.12.3.js"></script>
+    <script>
+      function resizeBox() {
+        var box = document.getElementById("box");
+        var width = window.innerWidth; // 获取窗口宽度
+        var height = window.innerHeight; // 获取窗口高度
+        // 计算盒子的高度
+        var boxHeight = Math.min(height, (width / 16) * 9); // 高度最多为100%
+        // 设置盒子的样式
+        box.style.height = boxHeight + "px";
+      }
+      // 初始化时调整盒子大小
+      resizeBox();
+      // 监听窗口大小改变事件
+      window.addEventListener("resize", function () {
+        resizeBox();
+        setTimeout(() => {
+          xie();
+        }, 800);
+      });
+    </script>
+    <script>
+      function next() {
+        new Audio("../mp3/pages.mp3").play();
+        $(".hei").fadeIn(500); // 2000毫秒为过渡效果持续时间
+        setTimeout(() => {
+          window.location.href = "./page12.html";
+        }, 500);
+      }
+      function pre() {
+        new Audio("../mp3/pages.mp3").play();
+        $(".hei").fadeIn(500); // 2000毫秒为过渡效果持续时间
+        setTimeout(() => {
+          window.location.href = "./page10.html";
+        }, 500);
+      }
+    </script>
+
+    <script>
+      var audio = new Audio("../mp3/P8.mp3");
+      var isPlaying = false;
+      function playMp3() {
+        if (!isPlaying) {
+          isPlaying = true;
+          audio.play();
+          audio.onended = function () {
+            isPlaying = false;
+          };
+        }
+      }
+      page = 0;
+      // 左箭头
+      function goTop() {
+        if (!isPlaying) {
+          // if (page == 7 || page == 8) {
+          //   $(".lefts,.rights,.shi").fadeIn();
+          //   $(
+          //     ".zhi,.zhi1,.zhi2,.zhi3,.zhi4,.zhi5,.chi,.chi1,.chi2,.chi3,.chi4,.chi5,.shi1,.shi2,.shi3,.shi3,.shi4,.ri,.ri1,.ri2,.ri3,.ri4,.ri5"
+          //   ).fadeOut();
+          //   page = 5;
+          // } else
+          if (page == 5 || page == 6) {
+            $(".lefts,.rights,.chi").fadeIn();
+            $(
+              ".zhi,.zhi1,.zhi2,.zhi3,.zhi4,.zhi5,.chi1,.chi2,.chi3,.chi4,.chi5,.shi,.shi1,.shi2,.shi3,.shi3,.shi4,.ri,.ri1,.ri2,.ri3,.ri4,.ri5"
+            ).fadeOut();
+            page = 3;
+          } else if (page == 3 || page == 4) {
+            $(".rights,.zhi,.lefts").fadeIn();
+            $(
+              ".zhi1,.zhi2,.zhi3,.zhi4,.zhi5,.chi,.chi1,.chi2,.chi3,.chi4,.chi5,.shi,.shi1,.shi2,.shi3,.shi3,.shi4,.ri,.ri1,.ri2,.ri3,.ri4,.ri5"
+            ).fadeOut();
+            page = 1;
+          } else if (page == 1 || page == 2) {
+            $(".rights").fadeIn();
+            $(".lefts").fadeOut();
+            $(
+              ".zhi,.zhi1,.zhi2,.zhi3,.zhi4,.zhi5,.chi,.chi1,.chi2,.chi3,.chi4,.chi5,.shi,.shi1,.shi2,.shi3,.shi3,.shi4,.ri,.ri1,.ri2,.ri3,.ri4,.ri5,.lefts"
+            ).fadeOut();
+            page = 0;
+          }
+        }
+        if (page == 1 || page == 2) {
+          $(".tk1").fadeIn();
+          $(".tk2,.tk3,.tk4").fadeOut();
+        } else if (page == 3 || page == 4) {
+          $(".tk2").fadeIn();
+          $(".tk1,.tk3,.tk4").fadeOut();
+        } else if (page == 5 || page == 6) {
+          $(".tk3").fadeIn();
+          $(".tk1,.tk2,.tk4").fadeOut();
+        } else if (page == 7 || page == 8) {
+          $(".tk4").fadeIn();
+          $(".tk1,.tk2,.tk3").fadeOut();
+        }
+      }
+      // 右箭头
+      function goBtm() {
+        if (page == 0) {
+          $(".zhi,.lefts,.rights").fadeIn();
+          page++;
+          setTimeout(() => {
+            var audio = new Audio("../mp3/P8-1.mp3");
+            if (!isPlaying) {
+              isPlaying = true;
+              audio.play();
+              $(".lefts,.rights").fadeIn();
+              page++;
+              setTimeout(() => {
+                $(".zhi1").fadeIn().fadeOut().fadeIn().fadeOut().fadeIn();
+              }, 1000);
+              setTimeout(() => {
+                $(".zhi2").fadeIn().fadeOut().fadeIn().fadeOut().fadeIn();
+              }, 1000);
+              setTimeout(() => {
+                $(".zhi3").fadeIn().fadeOut().fadeIn().fadeOut().fadeIn();
+              }, 2000);
+              setTimeout(() => {
+                $(".zhi4").fadeIn().fadeOut().fadeIn().fadeOut().fadeIn();
+              }, 2000);
+              audio.onended = function () {
+                isPlaying = false;
+              };
+            }
+          }, 500);
+        } else if (page == 2) {
+          if (!isPlaying) {
+            $(".lefts,.rights,.chi").fadeIn();
+            $(".zhi,.zhi1,.zhi2,.zhi3,.zhi4,.zhi5").fadeOut();
+            page++;
+            setTimeout(() => {
+              var audio = new Audio("../mp3/P8-2.mp3");
+              if (!isPlaying) {
+                isPlaying = true;
+                audio.play();
+                $(".lefts,.rights").fadeIn();
+                page++;
+                setTimeout(() => {
+                  $(".chi1").fadeIn().fadeOut().fadeIn().fadeOut().fadeIn();
+                }, 1000);
+                setTimeout(() => {
+                  $(".chi2").fadeIn().fadeOut().fadeIn().fadeOut().fadeIn();
+                }, 2000);
+                setTimeout(() => {
+                  $(".chi3").fadeIn().fadeOut().fadeIn().fadeOut().fadeIn();
+                }, 2000);
+                // setTimeout(() => {
+                //   $(".chi4").fadeIn().fadeOut().fadeIn().fadeOut().fadeIn();
+                // }, 4000);
+                // setTimeout(() => {
+                //   $(".chi5").fadeIn().fadeOut().fadeIn().fadeOut().fadeIn();
+                // }, 16000);
+                audio.onended = function () {
+                  isPlaying = false;
+                };
+              }
+            }, 500);
+          }
+        } else if (page == 4) {
+          if (!isPlaying) {
+            $(".lefts,.rights,.shi").fadeIn();
+            $(".chi,.chi1,.chi2,.chi3,.chi4,.chi5").fadeOut();
+            page++;
+            setTimeout(() => {
+              var audio = new Audio("../mp3/P8-3.mp3");
+              if (!isPlaying) {
+                isPlaying = true;
+                audio.play();
+                $(".lefts,.rights").fadeIn();
+
+                $(".rights").fadeOut();
+                $(".chi,.chi1,.chi2,.chi3,.chi4,.chi5").fadeOut();
+                page++;
+                setTimeout(() => {
+                  $(".shi1").fadeIn().fadeOut().fadeIn().fadeOut().fadeIn();
+                }, 1000);
+                setTimeout(() => {
+                  $(".shi2").fadeIn().fadeOut().fadeIn().fadeOut().fadeIn();
+                }, 1000);
+                setTimeout(() => {
+                  $(".shi3").fadeIn().fadeOut().fadeIn().fadeOut().fadeIn();
+                }, 2000);
+
+                setTimeout(() => {
+                  $(".shi4").fadeIn().fadeOut().fadeIn().fadeOut().fadeIn();
+                }, 2000);
+                audio.onended = function () {
+                  isPlaying = false;
+                };
+              }
+            }, 500);
+          }
+        }
+        //  else if (page == 6) {
+        //   if (!isPlaying) {
+        //     $(".lefts,.rights,.ri").fadeIn();
+        //     $(".shi,.shi1,.shi2,.shi3,.shi4,.shi5").fadeOut();
+        //     page++;
+        //     setTimeout(() => {
+        //       var audio = new Audio("../mp3/P8-4.mp3");
+        //       if (!isPlaying) {
+        //         isPlaying = true;
+        //         audio.play();
+        //         $(".lefts").fadeIn();
+        //         $(".rights").fadeOut();
+        //         $(".chi,.chi1,.chi2,.chi3,.chi4,.chi5").fadeOut();
+        //         page++;
+        //         setTimeout(() => {
+        //           $(".ri1").fadeIn().fadeOut().fadeIn().fadeOut().fadeIn();
+        //         }, 2000);
+        //         setTimeout(() => {
+        //           $(".ri2").fadeIn().fadeOut().fadeIn().fadeOut().fadeIn();
+        //         }, 2000);
+        //         setTimeout(() => {
+        //           $(".ri3").fadeIn().fadeOut().fadeIn().fadeOut().fadeIn();
+        //         }, 4000);
+        //         setTimeout(() => {
+        //           $(".ri4").fadeIn().fadeOut().fadeIn().fadeOut().fadeIn();
+        //         }, 4000);
+        //         audio.onended = function () {
+        //           isPlaying = false;
+        //         };
+        //       }
+        //     }, 500);
+        //   }
+        // }
+        if (page == 1 || page == 2) {
+          $(".tk1").fadeIn();
+          $(".tk2,.tk3,.tk4").fadeOut();
+        } else if (page == 3 || page == 4) {
+          $(".tk2").fadeIn();
+          $(".tk1,.tk3,.tk4").fadeOut();
+        } else if (page == 5 || page == 6) {
+          $(".tk3").fadeIn();
+          $(".tk1,.tk2,.tk4").fadeOut();
+        } else if (page == 7 || page == 8) {
+          $(".tk4").fadeIn();
+          $(".tk1,.tk2,.tk3").fadeOut();
+        }
+      }
+      setTimeout(() => {
+        xie();
+      }, 800);
+      function xie() {
+        var canvas = document.getElementById("canvas");
+        var canvasWidth = document.querySelector(".gezi").offsetWidth;
+        var canvasHeight = document.querySelector(".gezi").offsetHeight;
+        var cxt = canvas.getContext("2d");
+        canvas.width = canvasWidth;
+        canvas.height = canvasHeight;
+        $("#canvas").css("width", canvasWidth + "px");
+        $("#canvas").css("height", canvasHeight + "px");
+        var isMouseDown = false;
+        var lastLoc = { x: 0, y: 0 }; //起笔坐标
+        var lastTime = 0; //用于计算时间
+        var lastLineWidth = -1;
+        var lineColor = "#000000";
+        paths = []; // 存储绘制的路径
+        drawGrid(cxt);
+        // var canvas = document.getElementById("canvas");
+        // var canvasWidth = Math.min(
+        //   document.querySelector(".gezi").offsetWidth,
+        //   $(window).width() - 200
+        // );
+        // var canvasHeight = Math.min(
+        //   document.querySelector(".gezi").offsetHeigh,
+        //   $(window).width() - 200
+        // );
+        // // var canvasWidth = Math.min(
+        // //   document.querySelector(".gezi").offsetWidth,
+        // //   $(window).width() - 200
+        // // );
+        // // var canvasHeight = Math.min(
+        // //   document.querySelector(".gezi").offsetHeight,
+        // //   $(window).height() - 200
+        // // );
+        // var cxt = canvas.getContext("2d");
+        // canvas.width = canvasWidth;
+        // canvas.height = canvas.width;
+        // $("#canvas").css("width", canvasWidth + "px");
+        // $("#canvas").css("height", canvasHeight + "px");
+        // var isMouseDown = false;
+        // var lastLoc = { x: 0, y: 0 }; //起笔坐标
+        // var lastTime = 0; //用于计算时间
+        // var lastLineWidth = -1;
+        // var lineColor = "black";
+        // paths = []; // 存储绘制的路径
+        // drawGrid(cxt);
+        function beginStroke(point) {
+          isMouseDown = true;
+          lastLoc = windowToCanvas(point.x, point.y);
+          lastTime = new Date().getTime();
+          paths.push([]); // 创建新的路径数组
+          paths[paths.length - 1].push(lastLoc); // 将起点坐标加入当前路径
+        }
+        function endStroke() {
+          isMouseDown = false;
+        }
+        function moveStroke(point) {
+          var curLoc = windowToCanvas(point.x, point.y);
+          var curTime = new Date().getTime();
+          var s = calcDistance(curLoc, lastLoc); // 获取笔锋经过的距离
+          var t = curTime - lastTime; // 获取笔锋经过的时间 ，用于计算行笔速度，赋值不同的宽度
+          var lineWidth = calcLineWidth(t, s);
+          cxt.beginPath();
+          cxt.moveTo(lastLoc.x, lastLoc.y);
+          cxt.lineTo(curLoc.x, curLoc.y);
+          cxt.strokeStyle = lineColor;
+          cxt.lineWidth = lineWidth;
+          cxt.lineCap = "round";
+          cxt.lineJoin = "round";
+          cxt.stroke();
+          cxt.closePath();
+          lastLoc = curLoc;
+          lastTime = curTime;
+          lastLineWidth = lineWidth;
+          paths[paths.length - 1].push(curLoc); // 将当前点加入当前路径
+        }
+        canvas.onmousedown = function (e) {
+          e.preventDefault();
+          beginStroke({ x: e.clientX, y: e.clientY });
+        };
+        canvas.onmouseup = function (e) {
+          endStroke();
+          e.preventDefault();
+        };
+        canvas.onmouseout = function (e) {
+          endStroke();
+          e.preventDefault();
+        };
+        canvas.onmousemove = function (e) {
+          e.preventDefault();
+          if (isMouseDown) {
+            moveStroke({ x: e.clientX, y: e.clientY });
+          }
+        };
+        // 触屏事件
+        canvas.addEventListener("touchstart", function (e) {
+          e.preventDefault();
+          var touch = e.touches[0];
+          beginStroke({ x: touch.pageX, y: touch.pageY });
+        });
+        canvas.addEventListener("touchmove", function (e) {
+          e.preventDefault();
+          if (isMouseDown) {
+            var touch = e.touches[0];
+            moveStroke({ x: touch.pageX, y: touch.pageY });
+          }
+        });
+        canvas.addEventListener("touchend", function (e) {
+          e.preventDefault();
+          endStroke();
+        });
+        // }
+        var maxLineWidth = 8;
+        var minLineWidth = 1;
+        var maxStrokeV = 10;
+        var minStrokeV = 0.1;
+        function calcLineWidth(t, s) {
+          // 计算运笔速度和时间，获取不同得到宽度
+          var resultLineWidth = 0;
+          var v = s / t;
+          if (v <= minStrokeV) {
+            resultLineWidth = maxLineWidth;
+          } else if (v >= maxStrokeV) {
+            resultLineWidth = minLineWidth;
+          } else {
+            resultLineWidth =
+              maxLineWidth -
+              ((v - minStrokeV) / (maxStrokeV - minStrokeV)) *
+                (maxLineWidth - minLineWidth);
+          }
+          if (lastLineWidth === -1) {
+            return resultLineWidth;
+          }
+          return (lastLineWidth * 2) / 3 + (resultLineWidth * 1) / 3;
+        }
+        function calcDistance(loc1, loc2) {
+          return Math.sqrt(
+            (loc1.x - loc2.x) * (loc1.x - loc2.x) +
+              (loc1.y - loc2.y) * (loc1.y - loc2.y)
+          );
+        }
+        function windowToCanvas(x, y) {
+          var box = canvas.getBoundingClientRect();
+          return { x: x - box.left, y: y - box.top };
+        }
+        function drawGrid(cxt) {
+          cxt.save();
+          cxt.beginPath();
+          // cxt.moveTo(3, 3);
+          // cxt.lineTo(canvas.width - 13, 3);
+          // cxt.lineTo(canvas.width - 13, canvas.height - 3);
+          // cxt.lineTo(3, canvas.height - 3);
+          // cxt.lineTo(3, 3);
+          // cxt.lineWidth = 6;
+          // cxt.strokeStyle = "green";
+          // cxt.closePath();
+          // cxt.stroke();
+          // cxt.restore();
+          // cxt.save();
+          // cxt.beginPath();
+          // cxt.moveTo(3, 3);
+          // cxt.lineTo(canvas.width, canvas.height);
+          // cxt.moveTo(canvas.width, 3);
+          // cxt.lineTo(3, canvas.height);
+          // cxt.moveTo(canvas.width / 2, 3);
+          // cxt.lineTo(canvas.width / 2, canvas.height);
+          // cxt.moveTo(3, canvas.height / 2);
+          // cxt.lineTo(canvas.width, canvas.height / 2);
+          // cxt.strokeStyle = "green";
+          cxt.lineWidth = 1;
+          cxt.stroke();
+          cxt.closePath();
+          cxt.restore();
+        }
+        // 控制代码
+        $("#clear_btn").click(function (e) {
+          cxt.clearRect(0, 0, canvas.width, canvas.height);
+          // drawGrid(cxt);
+        });
+        $("#cw").click(function (e) {
+          cxt.clearRect(0, 0, canvas.width, canvas.height);
+          // drawGrid(cxt);
+          paths = [];
+        });
+        $("#cw2").click(function (e) {
+          cxt.clearRect(0, 0, canvas.width, canvas.height);
+          // drawGrid(cxt);
+          paths = [];
+        });
+        // 撤回
+        $("#cx_btn").click(function (e) {
+          if (paths.length > 0) {
+            paths.pop(); // 删除最后一个路径
+            cxt.clearRect(0, 0, canvas.width, canvas.height);
+            drawGrid(cxt);
+            // 重新绘制剩余的路径
+            for (var i = 0; i < paths.length; i++) {
+              var path = paths[i];
+              for (var j = 0; j < path.length - 1; j++) {
+                cxt.beginPath();
+                cxt.moveTo(path[j].x, path[j].y);
+                cxt.lineTo(path[j + 1].x, path[j + 1].y);
+                cxt.strokeStyle = lineColor;
+                cxt.lineWidth = lastLineWidth;
+                cxt.lineCap = "round";
+                cxt.lineJoin = "round";
+                cxt.stroke();
+                cxt.closePath();
+              }
+            }
+          }
+          if (paths.length == 0) {
+            paths = [];
+          }
+        });
+        cxt.clearRect(0, 0, canvas.width, canvas.height);
+      }
+    </script>
+    <script>
+      // 语音按钮
+      const imgElement = document.querySelector(".btn.yuyin");
+      imgElement.addEventListener("mousedown", function (event) {
+        //console.log("鼠标按下");
+        // 更改图片元素的src属性
+        imgElement.src = "../images/axyy.png";
+      });
+      imgElement.addEventListener("mouseup", function (event) {
+        //console.log("鼠标抬起");
+        imgElement.src = "../images/yuyin@2x.png";
+      });
+      imgElement.addEventListener("mouseleave", function (event) {
+        ////console.log("鼠标离开");
+        imgElement.src = "../images/yuyin@2x.png";
+      });
+
+      // 上一页按钮
+      const imgElement2 = document.querySelector(".btn.shangyiye");
+      imgElement2.addEventListener("mousedown", function (event) {
+        //console.log("鼠标按下");
+        // 更改图片元素的src属性
+        imgElement2.src = "../images/As.png";
+      });
+      imgElement2.addEventListener("mouseup", function (event) {
+        //console.log("鼠标抬起");
+        imgElement2.src = "../images/syy.png";
+      });
+      imgElement2.addEventListener("mouseleave", function (event) {
+        ////console.log("鼠标离开");
+        imgElement2.src = "../images/syy.png";
+      });
+
+      // 下一页按钮
+      const imgElement3 = document.querySelector(".btn.xiayiye");
+      imgElement3.addEventListener("mousedown", function (event) {
+        //console.log("鼠标按下");
+        // 更改图片元素的src属性
+        imgElement3.src = "../images/Ax.png";
+      });
+      imgElement3.addEventListener("mouseup", function (event) {
+        //console.log("鼠标抬起");
+        imgElement3.src = "../images/nextPage.png";
+      });
+      imgElement3.addEventListener("mouseleave", function (event) {
+        ////console.log("鼠标离开");
+        imgElement3.src = "../images/nextPage.png";
+      });
+
+      // 重玩按钮
+      const imgElement4 = document.querySelector(".btn.chongwan");
+      imgElement4.addEventListener("mousedown", function (event) {
+        //console.log("鼠标按下");
+        // 更改图片元素的src属性
+        imgElement4.src = "../images/axcw.png";
+      });
+      imgElement4.addEventListener("mouseup", function (event) {
+        //console.log("鼠标抬起");
+        imgElement4.src = "../images/cwBtn.png";
+      });
+      imgElement4.addEventListener("mouseleave", function (event) {
+        ////console.log("鼠标离开");
+        imgElement4.src = "../images/cwBtn.png";
+      });
+    </script>
+    <script>
+      // 在页面加载完成后执行
+      $(document).ready(function () {
+        // 设置一个延时，以便看到渐变过渡效果
+        setTimeout(function () {
+          $(".hei").fadeOut(500, function () {
+            // 渐变过渡结束后隐藏盒子
+            $(this).hide();
+          });
+        }, 0);
+      });
+      // function play() {
+      //   if (page == 1) {
+      //     // var audio = new Audio("../mp3/P7-2.mp3");
+      //     if (!isPlaying) {
+      //       // isPlaying = true;
+      //       // audio.play();
+      //       setTimeout(() => {
+      //         $(".abihua3").fadeIn().fadeOut().fadeIn().fadeOut().fadeIn();
+      //       }, 10000);
+      //       setTimeout(() => {
+      //         $(".abihua1").fadeIn().fadeOut().fadeIn().fadeOut().fadeIn();
+      //       }, 6000);
+      //       setTimeout(() => {
+      //         $(".abihua2").fadeIn().fadeOut().fadeIn().fadeOut().fadeIn();
+      //       }, 2000);
+      //       // audio.onended = function () {
+      //       //   isPlaying = false;
+      //       // };
+      //     }
+      //   } else if (page == 2) {
+      //     var audio = new Audio("../mp3/P7-3.mp3");
+      //     if (!isPlaying) {
+      //       isPlaying = true;
+      //       audio.play();
+      //       setTimeout(() => {
+      //         $(".ubihua2").fadeIn().fadeOut().fadeIn().fadeOut().fadeIn();
+      //       }, 6000);
+      //       setTimeout(() => {
+      //         $(".ubihua1").fadeIn().fadeOut().fadeIn().fadeOut().fadeIn();
+      //       }, 2000);
+      //       audio.onended = function () {
+      //         isPlaying = false;
+      //       };
+      //     }
+      //   }
+      // }
+    </script>
+    <script>
+      function ret() {
+        $(".hei").fadeIn(500); // 2000毫秒为过渡效果持续时间
+        setTimeout(() => {
+          window.location.href = "../../../../../page2.html";
+        }, 500);
+      }
+      function cw() {
+        location.reload();
+      }
+      // 点击提示
+      function tixing() {
+        $(".prop").fadeIn();
+      }
+      // 关闭提示弹框
+      $(".prop").click(function () {
+        $(".prop").fadeOut();
+      });
+    </script>
+  </body>
+</html>

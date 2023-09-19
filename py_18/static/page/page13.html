@@ -1,0 +1,1226 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta
+      name="viewport"
+      content="width=device-width, user-scalable=no,initial-scale=1.0, maximum-scale=1.0, mininum-scale=1.0"
+    />
+    <link rel="stylesheet" href="../css/common.css" />
+    <link rel="stylesheet" href="../css/animate.min.css" />
+    <title>page13</title>
+  </head>
+  <body>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+      #box {
+        position: relative;
+        width: calc(100vh * 16 / 9);
+        height: 100vh;
+        max-height: 100%;
+        /* background-color: #ccc; */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        font-size: 24px;
+        background: url("../images/kbBg.png");
+        background-size: contain;
+      }
+      .btn {
+        transition: transform 0.1s;
+      }
+      .btn:hover {
+        transform: scale(1.1);
+      }
+      img {
+        position: absolute;
+        cursor: pointer;
+      }
+      .hei {
+        position: fixed;
+        z-index: 99;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgb(0, 0, 0);
+      }
+      .prop {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(0, 0, 0, 0.5);
+        z-index: 999;
+        display: none;
+      }
+    </style>
+    <!-- 黑幕 -->
+    <div class="hei"></div>
+    <div id="box">
+      <!-- 返回 -->
+      <img
+        onclick="ret()"
+        class="btn"
+        style="width: 4.5%; top: 3%; left: 3%"
+        src="../images/fanhui@2x.png"
+        alt=""
+      />
+      <!-- 重玩 -->
+      <img
+        onclick="cw()"
+        class="btn chongwan"
+        style="width: 9.5%; bottom: 3%; right: 38.5%"
+        src="../images/cwBtn.png"
+        alt=""
+      />
+      <!-- 语音 -->
+      <img
+        class="btn yuyin"
+        onclick="playMp3()"
+        style="width: 9.5%; bottom: 3%; right: 28%"
+        src="../images/yuyin@2x.png"
+        alt=""
+      />
+      <!-- 上一页 -->
+      <img
+        class="btn shangyiye"
+        onclick="pre()"
+        style="width: 12%; bottom: 3%; right: 15%"
+        src="../images/syy.png"
+        alt=""
+      />
+      <!-- 下一页 -->
+      <img
+        class="btn xiayiye"
+        onclick="next()"
+        style="width: 12%; bottom: 3%; right: 2%"
+        src="../images/nextPage.png"
+        alt=""
+      />
+      <img
+        style="width: 8%; top: 9%; left: 11%"
+        src="../images/y1.png"
+        alt=""
+      />
+      <img
+        style="width: 7%; top: 38%; left: 11.5%"
+        src="../images/y5.png"
+        alt=""
+      />
+      <img
+        style="width: 9%; top: 66%; left: 10.5%"
+        src="../images/zhengti.png"
+        alt=""
+      />
+      <!-- -- -->
+      <div id="row1">
+        <img
+          class="t1"
+          onclick="to(1)"
+          style="width: 5%; top: 9.5%; left: 21%"
+          src="../images/y2.png"
+          alt=""
+        />
+        <img
+          class="t2"
+          onclick="to(2)"
+          style="width: 5%; top: 9.5%; left: 27%"
+          src="../images/y3.png"
+          alt=""
+        />
+        <img
+          class="t3"
+          onclick="to(3)"
+          style="width: 5%; top: 9.5%; left: 33%"
+          src="../images/y4.png"
+          alt=""
+        />
+        <img
+          class="t1_2"
+          onclick="to(102)"
+          style="width: 5%; top: 14%; left: 37.5%"
+          src="../images/4-i.png"
+          alt=""
+        />
+        <img
+          class="t2_2"
+          onclick="to(202)"
+          style="width: 5%; top: 14%; left: 43%"
+          src="../images/4-u.png"
+          alt=""
+        />
+        <img
+          class="t3_2"
+          onclick="to(302)"
+          style="width: 5%; top: 14%; left: 48.5%"
+          src="../images/4-v.png"
+          alt=""
+        />
+        <img
+          class="z1_0"
+          onclick="to(32)"
+          style="width: 5%; top: 9.5%; left: 39%"
+          src="../images/z1.png"
+          alt=""
+        /><img
+          class="z2_0"
+          onclick="to(33)"
+          style="width: 5%; top: 9.5%; left: 45%"
+          src="../images/z2.png"
+          alt=""
+        /><img
+          class="z3_0"
+          onclick="to(34)"
+          style="width: 5%; top: 9.5%; left: 51%"
+          src="../images/z3.png"
+          alt=""
+        /><img
+          class="z4_0"
+          onclick="to(35)"
+          style="width: 5%; top: 9.5%; left: 57%"
+          src="../images/z4.png"
+          alt=""
+        /><img
+          class="z5_0"
+          onclick="to(36)"
+          style="width: 5%; top: 9.5%; left: 63%"
+          src="../images/z5.png"
+          alt=""
+        /><img
+          class="z46_0"
+          onclick="to(46)"
+          style="width: 5%; top: 9.5%; left: 69%"
+          src="../images/z6.png"
+          alt=""
+        /><img
+          class="z11_0"
+          onclick="to(43)"
+          style="width: 5%; top: 9.5%; left: 75%"
+          src="../images/z43.png"
+          alt=""
+        /><img
+          class="z12_0"
+          onclick="to(44)"
+          style="width: 5%; top: 9.5%; left: 81%"
+          src="../images/z44.png"
+          alt=""
+        /><img
+          class="z13_0"
+          onclick="to(45)"
+          style="width: 5%; top: 9.5%; left: 87%"
+          src="../images/z45.png"
+          alt=""
+        /><img
+          class="z14_0"
+          onclick="to(47)"
+          style="width: 5%; top: 21%; left: 21%; display: none"
+          src="../images/r1.png"
+          alt=""
+        /><img
+          class="z15_0"
+          onclick="to(48)"
+          style="width: 5%; top: 21%; left: 27%; display: none"
+          src="../images/r2.png"
+          alt=""
+        /><img
+          class="z16_0"
+          onclick="to(49)"
+          style="width: 5%; top: 21%; left: 33%; display: none"
+          src="../images/r3.png"
+          alt=""
+        />
+        <img
+          class="z17_0"
+          onclick="to(50)"
+          style="width: 5%; top: 21%; left: 39%; display: none"
+          src="../images/r4.png"
+          alt=""
+        /><img
+          class="z18_0"
+          onclick="to(51)"
+          style="width: 5%; top: 21%; left: 45%; display: none"
+          src="../images/r5.png"
+          alt=""
+        />
+        <img
+          class="z19_0"
+          onclick="to(52)"
+          style="width: 5%; top: 21%; left: 51%; display: none"
+          src="../images/r6.png"
+          alt=""
+        /><img
+          class="z20_0"
+          onclick="to(53)"
+          style="width: 5%; top: 21%; left: 57%; display: none"
+          src="../images/r7.png"
+          alt=""
+        /><img
+          class="z21_0"
+          onclick="to(54)"
+          style="width: 5%; top: 21%; left: 63%; display: none"
+          src="../images/r8.png"
+          alt=""
+        /><img
+          class="z22_0"
+          onclick="to(55)"
+          style="width: 5%; top: 21%; left: 69%; display: none"
+          src="../images/r9.png"
+          alt=""
+        />
+      </div>
+      <div id="row2">
+        <img
+          class="t4"
+          onclick="to(4)"
+          style="width: 5.2%; top: 37%; left: 21%"
+          src="../images/y6.png"
+          alt=""
+        />
+        <img
+          class="t5"
+          onclick="to(5)"
+          style="width: 5.2%; top: 37%; left: 26.5%"
+          src="../images/y7.png"
+          alt=""
+        />
+        <img
+          class="t6"
+          onclick="to(6)"
+          style="width: 5.2%; top: 37%; left: 32%"
+          src="../images/t5.png"
+          alt=""
+        />
+        <img
+          class="t7"
+          onclick="to(7)"
+          style="width: 5.2%; top: 37%; left: 37.5%"
+          src="../images/t6.png"
+          alt=""
+        />
+        <img
+          class="t8"
+          onclick="to(8)"
+          style="width: 5.2%; top: 37%; left: 43%"
+          src="../images/t7.png"
+          alt=""
+        />
+        <img
+          class="t9"
+          onclick="to(9)"
+          style="width: 5.2%; top: 37%; left: 48.5%"
+          src="../images/t8.png"
+          alt=""
+        />
+        <img
+          class="t10_2"
+          onclick="to(10)"
+          style="width: 5.2%; top: 37%; left: 54%"
+          src="../images/men.png"
+          alt=""
+        />
+        <img
+          class="t11_2"
+          onclick="to(11)"
+          style="width: 5.2%; top: 37%; left: 59.5%"
+          src="../images/gun.png"
+          alt=""
+        />
+
+        <img
+          class="t12_2"
+          onclick="to(12)"
+          style="width: 5.2%; top: 37%; left: 65%"
+          src="../images/donghuaG.png"
+          alt=""
+        />
+        <img
+          class="t13_2"
+          onclick="to(13)"
+          style="width: 5.2%; top: 37%; left: 70.5%"
+          src="../images/donghuaK.png"
+          alt=""
+        />
+        <img
+          class="t14_2"
+          onclick="to(14)"
+          style="width: 5.2%; top: 37%; left: 76%"
+          src="../images/donghuaH.png"
+          alt=""
+        />
+        <img
+          class="t15"
+          onclick="to(15)"
+          style="width: 5.2%; top: 37%; left: 81.5%"
+          src="../images/donghuaJi.png"
+          alt=""
+        />
+        <img
+          class="t16"
+          onclick="to(16)"
+          style="width: 5.2%; top: 47%; left: 21%"
+          src="../images/donghuaQiqiu.png"
+          alt=""
+        />
+        <img
+          class="t17"
+          onclick="to(17)"
+          style="width: 5.2%; top: 47%; left: 26.5%"
+          src="../images/donghuaXigua.png"
+          alt=""
+        />
+        <img
+          class="t18"
+          onclick="to(18)"
+          style="width: 5.2%; top: 47%; left: 32%"
+          src="../images/donghuaX.png"
+          alt=""
+        />
+        <img
+          class="t19"
+          onclick="to(19)"
+          style="width: 5.2%; top: 47%; left: 37.5%"
+          src="../images/donghuaCw.png"
+          alt=""
+        />
+        <img
+          class="t20"
+          onclick="to(20)"
+          style="width: 5.2%; top: 47%; left: 43%"
+          src="../images/donghuaChong.png"
+          alt=""
+        />
+        <img
+          class="t24"
+          onclick="to(24)"
+          style="width: 5.2%; top: 47%; left: 48.5%"
+          src="../images/zhiBg.png"
+          alt=""
+        />
+        <img
+          class="t25"
+          onclick="to(25)"
+          style="width: 5.2%; top: 47%; left: 54%"
+          src="../images/chiBg.png"
+          alt=""
+        />
+        <img
+          class="t26"
+          onclick="to(26)"
+          style="width: 5.2%; top: 47%; left: 59.5%"
+          src="../images/shiBg.png"
+          alt=""
+        />
+        <img
+          class="t27"
+          onclick="to(27)"
+          style="width: 5.2%; top: 47%; left: 65%"
+          src="../images/riBg.png"
+          alt=""
+        />
+        <img
+          class="z6_0"
+          onclick="to(37)"
+          style="width: 5.2%; top: 47%; left: 70.5%"
+          src="../images/tree2.png"
+          alt=""
+        />
+        <img
+          class="z7_0"
+          onclick="to(38)"
+          style="width: 5.2%; top: 47%; left: 76%"
+          src="../images/house.png"
+          alt=""
+        />
+      </div>
+      <img
+        class="t21_0"
+        onclick="to(21)"
+        style="width: 7%; top: 69%; left: 21%"
+        src="../images/xiezi.png"
+        alt=""
+      />
+      <img
+        class="t22_0"
+        onclick="to(22)"
+        style="width: 7%; top: 69%; left: 28.5%"
+        src="../images/cidian.png"
+        alt=""
+      />
+      <img
+        class="t23_0"
+        onclick="to(23)"
+        style="width: 7%; top: 69%; left: 36%"
+        src="../images/sigua.png"
+        alt=""
+      />
+      <img
+        class="t28_0"
+        onclick="to(28)"
+        style="width: 7%; top: 69%; left: 43.5%"
+        src="../images/shuzhiBg.png"
+        alt=""
+      />
+      <img
+        class="t29_0"
+        onclick="to(29)"
+        style="width: 7%; top: 69%; left: 51%"
+        src="../images/tuziBg.png"
+        alt=""
+      />
+      <img
+        class="t30_0"
+        onclick="to(30)"
+        style="width: 7%; top: 69%; left: 58.5%"
+        src="../images/shiziBg.png"
+        alt=""
+      />
+      <img
+        class="t31_0"
+        onclick="to(31)"
+        style="width: 7%; top: 69%; left: 66%"
+        src="../images/taiyangBg.png"
+        alt=""
+      />
+      <img
+        class="z8_0"
+        onclick="to(39)"
+        style="width: 7%; top: 69%; left: 73.5%"
+        src="../images/tree.png"
+        alt=""
+      />
+      <img
+        class="z9_0"
+        onclick="to(40)"
+        style="width: 7%; top: 69%; left: 81%"
+        src="../images/house.png"
+        alt=""
+      />
+      <img
+        class="z10_0"
+        onclick="to(41)"
+        style="width: 7%; top: 69%; left: 88.5%"
+        src="../images/leaf3.png"
+        alt=""
+      />
+
+      <!-- 背景 -->
+      <div id="row1-bg">
+        <img
+          class="t11"
+          style="width: 5%; top: 9.5%; left: 21%; display: none"
+          src="../images/y8.png"
+          alt=""
+        />
+        <img
+          class="t22"
+          style="width: 5%; top: 9.5%; left: 27%; display: none"
+          src="../images/y9.png"
+          alt=""
+        />
+        <img
+          class="t33"
+          style="width: 5%; top: 9.5%; left: 33%; display: none"
+          src="../images/y10.png"
+          alt=""
+        />
+        <img
+          class="t11_2_2"
+          style="width: 5%; top: 14%; left: 37.5%; display: none"
+          src="../images/4-ii.png"
+          alt=""
+        />
+        <img
+          class="t22_2"
+          style="width: 5%; top: 13.3%; left: 43%; display: none"
+          src="../images/4-uu.png"
+          alt=""
+        />
+        <img
+          class="t33_2"
+          style="width: 5%; top: 14%; left: 48.5%; display: none"
+          src="../images/4-vv.png"
+          alt=""
+        />
+        <img
+          class="z1"
+          style="width: 5%; top: 9.5%; left: 39%; display: none"
+          src="../images/ai-bgg.png"
+          alt=""
+        />
+        <img
+          class="z2"
+          style="width: 5%; top: 9.5%; left: 45%; display: none"
+          src="../images/ei-bgg.png"
+          alt=""
+        />
+        <img
+          class="z3"
+          style="width: 5%; top: 9.5%; left: 51%; display: none"
+          src="../images/ui-bgg.png"
+          alt=""
+        />
+        <img
+          class="z4"
+          style="width: 5%; top: 9.5%; left: 57%; display: none"
+          src="../images/ao-bgg.png"
+          alt=""
+        />
+        <img
+          class="z5"
+          style="width: 5%; top: 9.5%; left: 63%; display: none"
+          src="../images/ou-bgg.png"
+          alt=""
+        />
+        <img
+          class="z46"
+          style="width: 5%; top: 9.5%; left: 69%; display: none"
+          src="../images/iu-bgg.png"
+          alt=""
+        />
+        <img
+          class="z11"
+          style="width: 5%; top: 9.5%; left: 75%; display: none"
+          src="../images/ie-bgg.png"
+          alt=""
+        />
+        <img
+          class="z12"
+          style="width: 5%; top: 9.5%; left: 81%; display: none"
+          src="../images/ue-bgg.png"
+          alt=""
+        />
+        <img
+          class="z13"
+          style="width: 5%; top: 9.5%; left: 87%; display: none"
+          src="../images/er-bgg.png"
+          alt=""
+        />
+        <img
+          class="z14"
+          style="width: 5%; top: 21%; left: 21%; display: none"
+          src="../images/an-bgg.png"
+          alt=""
+        />
+        <img
+          class="z15"
+          style="width: 5%; top: 21%; left: 27%; display: none"
+          src="../images/en-bgg.png"
+          alt=""
+        />
+        <img
+          class="z16"
+          style="width: 5%; top: 21%; left: 33%; display: none"
+          src="../images/in-bgg.png"
+          alt=""
+        />
+        <img
+          class="z17"
+          style="width: 5%; top: 21%; left: 39%; display: none"
+          src="../images/un-bgg.png"
+          alt=""
+        />
+        <img
+          class="z18"
+          style="width: 5%; top: 21%; left: 45%; display: none"
+          src="../images/vn-bgg.png"
+          alt=""
+        />
+        <img
+          class="z19"
+          style="width: 5%; top: 21%; left: 51%; display: none"
+          src="../images/ang-bgg.png"
+          alt=""
+        />
+        <img
+          class="z20"
+          style="width: 5%; top: 21%; left: 57%; display: none"
+          src="../images/eng-bgg.png"
+          alt=""
+        />
+        <img
+          class="z21"
+          style="width: 5%; top: 21%; left: 63%; display: none"
+          src="../images/ing-bgg.png"
+          alt=""
+        />
+        <img
+          class="z22"
+          style="width: 5%; top: 21%; left: 69%; display: none"
+          src="../images/ong-bgg.png"
+          alt=""
+        />
+      </div>
+      <!-- 声母开头 -->
+      <div id="row3">
+        <img
+          class="t44"
+          style="width: 5%; top: 37%; left: 21%; display: none"
+          src="../images/y11.png"
+          alt=""
+        />
+        <img
+          class="t55"
+          style="width: 5%; top: 37%; left: 26.5%; display: none"
+          src="../images/y12.png"
+          alt=""
+        />
+
+        <img
+          class="t66"
+          style="width: 5%; top: 37%; left: 32%; display: none"
+          src="../images/t55.png"
+          alt=""
+        />
+
+        <img
+          class="t77"
+          style="width: 5%; top: 37%; left: 37.5%; display: none"
+          src="../images/t66.png"
+          alt=""
+        />
+        <img
+          class="t88"
+          style="width: 5%; top: 37%; left: 43%; display: none"
+          src="../images/t88.png"
+          alt=""
+        />
+        <img
+          class="t99_2"
+          style="width: 5%; top: 37%; left: 48.5%; display: none"
+          src="../images/t99.png"
+          alt=""
+        />
+
+        <img
+          class="t99"
+          style="width: 5%; top: 37%; left: 54%; display: none"
+          src="../images/nBg.png"
+          alt=""
+        />
+        <img
+          class="t1010"
+          style="width: 5%; top: 37%; left: 59.5%; display: none"
+          src="../images/lBg.png"
+          alt=""
+        />
+
+        <img
+          class="t1111"
+          style="width: 5%; top: 37%; left: 65%; display: none"
+          src="../images/banG.png"
+          alt=""
+        />
+        <img
+          class="t1212"
+          style="width: 5%; top: 37%; left: 70.5%; display: none"
+          src="../images/banK.png"
+          alt=""
+        />
+        <img
+          class="t1313"
+          style="width: 5%; top: 37%; left: 76%; display: none"
+          src="../images/banH.png"
+          alt=""
+        />
+
+        <img
+          class="t1515"
+          style="width: 5%; top: 37%; left: 81.5%; display: none"
+          src="../images/zimuJ.png"
+          alt=""
+        />
+
+        <img
+          class="t1616"
+          style="width: 5%; top: 47%; left: 21%; display: none"
+          src="../images/zimuQ.png"
+          alt=""
+        />
+
+        <img
+          class="t1717"
+          style="width: 5%; top: 47%; left: 26.5%; display: none"
+          src="../images/zimuX.png"
+          alt=""
+        />
+        <img
+          class="t1818"
+          style="width: 5%; top: 47%; left: 32%; display: none"
+          src="../images/zimuZ.png"
+          alt=""
+        />
+        <img
+          class="t1919"
+          style="width: 5%; top: 47%; left: 37.5%; display: none"
+          src="../images/zimuC.png"
+          alt=""
+        />
+        <img
+          class="t2020"
+          style="width: 5%; top: 47%; left: 43%; display: none"
+          src="../images/zimuS.png"
+          alt=""
+        />
+
+        <img
+          class="t2424"
+          style="width: 5%; top: 47%; left: 48.5%; display: none"
+          src="../images/zimuzh.png"
+          alt=""
+        />
+        <img
+          class="t2525"
+          style="width: 5%; top: 47%; left: 54%; display: none"
+          src="../images/zimuch.png"
+          alt=""
+        />
+        <img
+          class="t2626"
+          style="width: 5%; top: 47%; left: 59.5%; display: none"
+          src="../images/zimush.png"
+          alt=""
+        />
+        <img
+          class="t2727"
+          style="width: 5%; top: 47%; left: 65%; display: none"
+          src="../images/zimurBg.png"
+          alt=""
+        />
+        <img
+          class="z6"
+          style="width: 5%; top: 47%; left: 70.5%; display: none"
+          src="../images/y-bgg.png"
+          alt=""
+        />
+        <img
+          class="z7"
+          style="width: 5%; top: 47%; left: 76%; display: none"
+          src="../images/w-bgg.png"
+          alt=""
+        />
+      </div>
+      <img
+        class="t2121"
+        style="width: 7%; top: 69%; left: 21%; display: none"
+        src="../images/ziBg.png"
+        alt=""
+      />
+      <img
+        class="t2222"
+        style="width: 7%; top: 69%; left: 28.5%; display: none"
+        src="../images/ciBg.png"
+        alt=""
+      />
+      <img
+        class="t2323"
+        style="width: 7%; top: 69%; left: 36%; display: none"
+        src="../images/siBg.png"
+        alt=""
+      />
+      <img
+        class="t2828"
+        style="width: 7%; top: 69%; left: 43.5%; display: none"
+        src="../images/zhiBg0.png"
+        alt=""
+      />
+      <img
+        class="t2929"
+        style="width: 7%; top: 69%; left: 51%; display: none"
+        src="../images/chiBg0.png"
+        alt=""
+      />
+      <img
+        class="t3030"
+        style="width: 7%; top: 69%; left: 58.5%; display: none"
+        src="../images/shiBg0.png"
+        alt=""
+      />
+      <img
+        class="t3131"
+        style="width: 7%; top: 69%; left: 66%; display: none"
+        src="../images/riBg0.png"
+        alt=""
+      />
+
+      <img
+        class="z8"
+        style="width: 7%; top: 69%; left: 73.5%; display: none"
+        src="../images/yi-bgg.png"
+        alt=""
+      />
+      <img
+        class="z9"
+        style="width: 7%; top: 69%; left: 81%; display: none"
+        src="../images/wu-bgg.png"
+        alt=""
+      />
+      <img
+        class="z10"
+        style="width: 7%; top: 69%; left: 88.5%; display: none"
+        src="../images/yu-bgg.png"
+        alt=""
+      />
+    </div>
+    <script src="../js/jquery-1.12.3.js"></script>
+    <script src="../js/jquery-ui.min.js"></script>
+    <script>
+      function resizeBox() {
+        var box = document.getElementById("box");
+        var width = window.innerWidth; // 获取窗口宽度
+        var height = window.innerHeight; // 获取窗口高度
+        // 计算盒子的高度
+        var boxHeight = Math.min(height, (width / 16) * 9); // 高度最多为100%
+        // 设置盒子的样式
+        box.style.height = boxHeight + "px";
+      }
+      // 初始化时调整盒子大小
+      resizeBox();
+      // 监听窗口大小改变事件
+      window.addEventListener("resize", function () {
+        resizeBox();
+      });
+    </script>
+    <script>
+      function next() {
+        new Audio("../mp3/pages.mp3").play();
+        $(".hei").fadeIn(500); // 2000毫秒为过渡效果持续时间
+        setTimeout(() => {
+          window.location.href = "./page18.html";
+        }, 500);
+      }
+      function pre() {
+        new Audio("../mp3/pages.mp3").play();
+        $(".hei").fadeIn(500); // 2000毫秒为过渡效果持续时间
+        setTimeout(() => {
+          window.location.href = "./page16.html";
+        }, 500);
+      }
+    </script>
+
+    <script>
+      var audio = new Audio("../mp3/P12.mp3");
+      var isPlaying = false;
+      function playMp3() {
+        if (!isPlaying) {
+          isPlaying = true;
+          audio.play();
+          audio.onended = function () {
+            isPlaying = false;
+          };
+        }
+      }
+    </script>
+    <script>
+      // 语音按钮
+      const imgElement = document.querySelector(".btn.yuyin");
+      imgElement.addEventListener("mousedown", function (event) {
+        //console.log("鼠标按下");
+        // 更改图片元素的src属性
+        imgElement.src = "../images/axyy.png";
+      });
+      imgElement.addEventListener("mouseup", function (event) {
+        //console.log("鼠标抬起");
+        imgElement.src = "../images/yuyin@2x.png";
+      });
+      imgElement.addEventListener("mouseleave", function (event) {
+        //console.log("鼠标离开");
+        imgElement.src = "../images/yuyin@2x.png";
+      });
+
+      // 上一页按钮
+      const imgElement2 = document.querySelector(".btn.shangyiye");
+      imgElement2.addEventListener("mousedown", function (event) {
+        //console.log("鼠标按下");
+        // 更改图片元素的src属性
+        imgElement2.src = "../images/As.png";
+      });
+      imgElement2.addEventListener("mouseup", function (event) {
+        //console.log("鼠标抬起");
+        imgElement2.src = "../images/syy.png";
+      });
+      imgElement2.addEventListener("mouseleave", function (event) {
+        //console.log("鼠标离开");
+        imgElement2.src = "../images/syy.png";
+      });
+
+      // 下一页按钮
+      const imgElement3 = document.querySelector(".btn.xiayiye");
+      imgElement3.addEventListener("mousedown", function (event) {
+        //console.log("鼠标按下");
+        // 更改图片元素的src属性
+        imgElement3.src = "../images/Ax.png";
+      });
+      imgElement3.addEventListener("mouseup", function (event) {
+        //console.log("鼠标抬起");
+        imgElement3.src = "../images/nextPage.png";
+      });
+      imgElement3.addEventListener("mouseleave", function (event) {
+        //console.log("鼠标离开");
+        imgElement3.src = "../images/nextPage.png";
+      });
+
+      // 重玩按钮
+      const imgElement4 = document.querySelector(".btn.chongwan");
+      imgElement4.addEventListener("mousedown", function (event) {
+        //console.log("鼠标按下");
+        // 更改图片元素的src属性
+        imgElement4.src = "../images/axcw.png";
+      });
+      imgElement4.addEventListener("mouseup", function (event) {
+        //console.log("鼠标抬起");
+        imgElement4.src = "../images/cwBtn.png";
+      });
+      imgElement4.addEventListener("mouseleave", function (event) {
+        //console.log("鼠标离开");
+        imgElement4.src = "../images/cwBtn.png";
+      });
+    </script>
+    <script>
+      // 在页面加载完成后执行
+      $(document).ready(function () {
+        // 设置一个延时，以便看到渐变过渡效果
+        setTimeout(function () {
+          $(".hei").fadeOut(500, function () {
+            // 渐变过渡结束后隐藏盒子
+            $(this).hide();
+          });
+        }, 0);
+      });
+    </script>
+    <script>
+      function ret() {
+        $(".hei").fadeIn(500); // 2000毫秒为过渡效果持续时间
+        setTimeout(() => {
+          window.location.href = "../../../../../page2.html";
+        }, 500);
+      }
+      function to(i) {
+        if (i == 1) {
+          $(".t11").fadeIn();
+          $(".t1").fadeOut();
+        } else if (i == 2) {
+          $(".t22").fadeIn();
+          $(".t2").fadeOut();
+        } else if (i == 3) {
+          $(".t33").fadeIn();
+          $(".t3").fadeOut();
+        } else if (i == 4) {
+          $(".t44").fadeIn();
+          $(".t4").fadeOut();
+        } else if (i == 5) {
+          $(".t55").fadeIn();
+          $(".t5").fadeOut();
+        } else if (i == 6) {
+          $(".t66").fadeIn();
+          $(".t6").fadeOut();
+        } else if (i == 7) {
+          $(".t77").fadeIn();
+          $(".t7").fadeOut();
+        } else if (i == 8) {
+          $(".t88").fadeIn();
+          $(".t8").fadeOut();
+        } else if (i == 9) {
+          $(".t99_2").fadeIn();
+          $(".t9").fadeOut();
+        } else if (i == 10) {
+          $(".t99").fadeIn();
+          $(".t10_2").fadeOut();
+        } else if (i == 11) {
+          $(".t1010").fadeIn();
+          $(".t11_2").fadeOut();
+        } else if (i == 12) {
+          $(".t1111").fadeIn();
+          $(".t12_2").fadeOut();
+        } else if (i == 13) {
+          $(".t1212").fadeIn();
+          $(".t13_2").fadeOut();
+        } else if (i == 14) {
+          $(".t1313").fadeIn();
+          $(".t14_2").fadeOut();
+        } else if (i == 15) {
+          $(".t1515").fadeIn();
+          $(".t15").fadeOut();
+        } else if (i == 16) {
+          $(".t1616").fadeIn();
+          $(".t16").fadeOut();
+        } else if (i == 17) {
+          $(".t1717").fadeIn();
+          $(".t17").fadeOut();
+        } else if (i == 18) {
+          $(".t1818").fadeIn();
+          $(".t18").fadeOut();
+        } else if (i == 19) {
+          $(".t1919").fadeIn();
+          $(".t19 ").fadeOut();
+        } else if (i == 20) {
+          $(".t2020").fadeIn();
+          $(".t20").fadeOut();
+        } else if (i == 21) {
+          $(".t2121").fadeIn();
+          $(".t21_0").fadeOut();
+        } else if (i == 22) {
+          $(".t2222").fadeIn();
+          $(".t22_0").fadeOut();
+        } else if (i == 23) {
+          $(".t2323").fadeIn();
+          $(".t23_0").fadeOut();
+        } else if (i == 24) {
+          $(".t2424").fadeIn();
+          $(".t24").fadeOut();
+        } else if (i == 25) {
+          $(".t2525").fadeIn();
+          $(".t25").fadeOut();
+        } else if (i == 26) {
+          $(".t2626").fadeIn();
+          $(".t26").fadeOut();
+        } else if (i == 27) {
+          $(".t2727").fadeIn();
+          $(".t27").fadeOut();
+        } else if (i == 28) {
+          $(".t2828").fadeIn();
+          $(".t28_0").fadeOut();
+        } else if (i == 29) {
+          $(".t2929").fadeIn();
+          $(".t29_0").fadeOut();
+        } else if (i == 30) {
+          $(".t3030").fadeIn();
+          $(".t30_0").fadeOut();
+        } else if (i == 31) {
+          $(".t3131").fadeIn();
+          $(".t31_0").fadeOut();
+        } else if (i == 32) {
+          $(".z1").fadeIn();
+          $(".z1_0").fadeOut();
+        } else if (i == 33) {
+          $(".z2").fadeIn();
+          $(".z2_0").fadeOut();
+        } else if (i == 34) {
+          $(".z3").fadeIn();
+          $(".z3_0").fadeOut();
+        } else if (i == 35) {
+          $(".z4").fadeIn();
+          $(".z4_0").fadeOut();
+        } else if (i == 36) {
+          $(".z5").fadeIn();
+          $(".z5_0").fadeOut();
+        } else if (i == 37) {
+          $(".z6").fadeIn();
+          $(".z6_0").fadeOut();
+        } else if (i == 38) {
+          $(".z7").fadeIn();
+          $(".z7_0").fadeOut();
+        } else if (i == 39) {
+          $(".z8").fadeIn();
+          $(".z8_0").fadeOut();
+        } else if (i == 40) {
+          $(".z9").fadeIn();
+          $(".z9_0").fadeOut();
+        } else if (i == 41) {
+          $(".z10").fadeIn();
+          $(".z10_0").fadeOut();
+        } else if (i == 43) {
+          $(".z11").fadeIn();
+          $(".z11_0").fadeOut();
+        } else if (i == 44) {
+          $(".z12").fadeIn();
+          $(".z12_0").fadeOut();
+        } else if (i == 45) {
+          $(".z13").fadeIn();
+          $(".z13_0").fadeOut();
+        } else if (i == 46) {
+          $(".z46").fadeIn();
+          $(".z46_0").fadeOut();
+        } else if (i == 47) {
+          $(".z14").fadeIn();
+          $(".z14_0").fadeOut();
+        } else if (i == 48) {
+          $(".z15").fadeIn();
+          $(".z15_0").fadeOut();
+        } else if (i == 49) {
+          $(".z16").fadeIn();
+          $(".z16_0").fadeOut();
+        } else if (i == 50) {
+          $(".z17").fadeIn();
+          $(".z17_0").fadeOut();
+        } else if (i == 51) {
+          $(".z18").fadeIn();
+          $(".z18_0").fadeOut();
+        } else if (i == 52) {
+          $(".z19").fadeIn();
+          $(".z19_0").fadeOut();
+        } else if (i == 53) {
+          $(".z20").fadeIn();
+          $(".z20_0").fadeOut();
+        } else if (i == 54) {
+          $(".z21").fadeIn();
+          $(".z21_0").fadeOut();
+        } else if (i == 55) {
+          $(".z22").fadeIn();
+          $(".z22_0").fadeOut();
+        } else if (i == 102) {
+          $(".t11_2_2").fadeIn();
+          $(".t1_2").fadeOut();
+        } else if (i == 202) {
+          $(".t22_2").fadeIn();
+          $(".t2_2").fadeOut();
+        } else if (i == 302) {
+          $(".t33_2").fadeIn();
+          $(".t3_2").fadeOut();
+        }
+      }
+      function cw() {
+        location.reload();
+      }
+      let row2 = $("#row2 img");
+      let row3 = $("#row3 img");
+      row2.css("width", "5%");
+      row3.css("width", "5%");
+
+      for (let i = 0; i < row2.length; i++) {
+        let left;
+        if (i <= 11) {
+          left = 21 + 5.7 * i;
+          row2.eq(i).css("top", "39%");
+          row3.eq(i).css("top", "39%");
+        } else {
+          left = 21 + 5.7 * (i - 12);
+          row2.eq(i).css("top", "50%");
+          row3.eq(i).css("top", "50%");
+        }
+        row2.eq(i).css("left", left + "%");
+        row3.eq(i).css("left", left + "%");
+      }
+
+      let row1 = $("#row1 img");
+      let row1bg = $("#row1-bg img");
+      row1.css("width", "5%");
+      row1bg.css("width", "5%");
+
+      for (let i = 0; i < row1.length; i++) {
+        let left;
+        if (i <= 11) {
+          left = 21 + 6 * i;
+          row1.eq(i).css("top", "9.5%");
+          row1bg.eq(i).css("top", "9.5%");
+        } else {
+          left = 21 + 6 * (i - 12);
+          row1.eq(i).css("top", "21%");
+          row1bg.eq(i).css("top", "21%");
+        }
+        row1.eq(i).css("left", left + "%");
+        row1bg.eq(i).css("left", left + "%");
+      }
+    </script>
+  </body>
+</html>
